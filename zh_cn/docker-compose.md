@@ -29,7 +29,7 @@ apt update && apt install docker-compose
 ### Web
 
 ```dockerfile
-FROM node:20-slim
+FROM registry.cn-guangzhou.aliyuncs.com/kabaka/docker_build:node20
 ARG INSTALL_PATH=/opt/docker-mcsm
 ARG TZ=Asia/Shanghai
 ENV TZ=${TZ}
@@ -49,7 +49,7 @@ CMD ["node", "app.js"]
 ### Daemon
 
 ```dockerfile
-FROM node:20-slim
+FROM registry.cn-guangzhou.aliyuncs.com/kabaka/docker_build:node20
 ARG INSTALL_PATH=/opt/docker-mcsm
 ARG TZ=Asia/Shanghai
 ENV TZ=${TZ}
