@@ -37,7 +37,7 @@ ARG INSTALL_ADDRESS=https://github.com/MCSManager/MCSManager/releases/latest/dow
 ARG Package=mcsmanager_linux_release.tar.gz
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debian.sources
 RUN apt update -y && apt install unzip tar wget curl -y
-RUN mkdir $INSTALL_PATH
+RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 RUN wget -O $Package $INSTALL_ADDRESS && tar vxf $Package && rm -r $Package && rm -r daemon
 WORKDIR $INSTALL_PATH/web
@@ -54,9 +54,10 @@ ARG INSTALL_PATH=/opt/docker-mcsm
 ARG TZ=Asia/Shanghai
 ENV TZ=${TZ}
 ARG INSTALL_ADDRESS=https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz
+ARG Package=mcsmanager_linux_release.tar.gz
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debian.sources
 RUN apt update -y && apt install unzip tar wget curl -y
-RUN mkdir $INSTALL_PATH
+RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 RUN wget -O $Package $INSTALL_ADDRESS && tar vxf $Package && rm -r $Package && rm -r web
 WORKDIR $INSTALL_PATH/daemon
@@ -181,9 +182,11 @@ docker-compose up -d mcsm-daemon # 仅运行 daemon
 
 ```
 
-docker-compose exec mcsm-web bash -c "cd ../ && wget https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz && tar vxf mcsmanager_linux_release.tar.gz && rm -r mcsmanager_linux_release.tar.gz" # 更新 web
+docker-compose exec mcsm-web bash -c "cd ../ && wget https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz && tar vxf mcsmanager_linux_release.tar.gz && rm -r mcsmanager_linux_release.tar.gz daemon" 
+# 更新 web
 
-docker-compose exec mcsm-daemon bash -c "cd ../ && wget https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz && tar vxf mcsmanager_linux_release.tar.gz && rm -r mcsmanager_linux_release.tar.gz" # 更新 daemon
+docker-compose exec mcsm-daemon bash -c "cd ../ && wget https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz && tar vxf mcsmanager_linux_release.tar.gz && rm -r mcsmanager_linux_release.tar.gz web" 
+# 更新 daemon
 
 docker-compose restart
 
