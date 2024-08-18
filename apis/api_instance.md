@@ -28,7 +28,7 @@ GET /api/service/remote_service_instances
     "pageSize": 10,
     "data": InstanceDetail[]
   },
-  "time": 1145141918100
+  "time": 1718594177859
 }
 ```
 
@@ -53,7 +53,7 @@ GET /api/instance
 {
   "status": 200,
   "data": InstanceDetail,
-  "time": 1145141918100
+  "time": 1718594177859
 }
 ```
 
@@ -73,7 +73,7 @@ POST /api/instance
 
 ##### Request Body
 
-> [InstanceDetail](#type-of-instancedetail)
+> [InstanceConfig](#type-of-instanceconfig)
 
 #### Response
 
@@ -84,11 +84,11 @@ POST /api/instance
     "instanceUuid": "50c73059001b436fa85c0d8221c157cf",
     "config": InstanceConfig
   },
-  "time": 1145141918100
+  "time": 1718594177859
 }
 ```
 
-## Update
+## Update Config
 
 ```http
 PUT /api/instance
@@ -115,7 +115,7 @@ PUT /api/instance
   "data": {
     "instanceUuid": "50c73059001b436fa85c0d8221c157cf"
   },
-  "time": 1145141918100
+  "time": 1718594177859
 }
 ```
 
@@ -129,7 +129,6 @@ DELETE /api/instance
 
 ```js
 {
-  uuid: string,     // Instance ID
   daemonId: string,
 }
 ```
@@ -138,7 +137,10 @@ DELETE /api/instance
 
 ```json
 {
-  "uuids": ["50c73059001b436fa85c0d8221c157cf"], // Instance Id
+  "uuids": [
+    "50c73059001b436fa85c0d8221c157cf"
+    "11c2f4c89b9e4e1da819dc56bf16f151"
+  ], // Instance Id
   "deleteFile": false // Delete instance files
 }
 ```
@@ -149,7 +151,7 @@ DELETE /api/instance
 {
   "status": 200,
   "data": true,
-  "time": 1145141918100
+  "time": 1718594177859
 }
 ```
 
@@ -176,7 +178,7 @@ GET /api/protected_instance/open
   "data": {
     "instanceUuid": "50c73059001b436fa85c0d8221c157cf"
   },
-  "time": 1145141918100
+  "time": 1718594177859
 }
 ```
 
@@ -203,7 +205,7 @@ GET /api/protected_instance/stop
   "data": {
     "instanceUuid": "50c73059001b436fa85c0d8221c157cf"
   },
-  "time": 1145141918100
+  "time": 1718594177859
 }
 ```
 
@@ -230,7 +232,7 @@ GET /api/protected_instance/restart
   "data": {
     "instanceUuid": "50c73059001b436fa85c0d8221c157cf"
   },
-  "time": 1145141918100
+  "time": 1718594177859
 }
 ```
 
@@ -257,7 +259,60 @@ GET /api/protected_instance/kill
   "data": {
     "instanceUuid": "50c73059001b436fa85c0d8221c157cf"
   },
-  "time": 1145141918100
+  "time": 1718594177859
+}
+```
+
+## Batch Operation
+Support operations: `start`, `stop`, `restart`, `kill`
+
+```http
+POST /api/instance/multi_{{operations}}
+```
+
+#### Query Param
+
+```js
+{
+  instanceUuid: string,
+  daemonId: string,
+}[]
+```
+
+#### Response
+
+```json
+{
+  "status": 200,
+  "data": true,
+  "time": 1718594177859
+}
+```
+
+
+## Update Instance
+
+```http
+GET /api/protected_instance/asynchronous
+```
+
+#### Query Param
+
+```js
+{
+  uuid: string,     // Instance ID
+  daemonId: string,
+  task_name: "update"
+}
+```
+
+#### Response
+
+```json
+{
+  "status": 200,
+  "data": true,
+  "time": 1718594177859
 }
 ```
 
@@ -285,7 +340,7 @@ GET /api/protected_instance/command
   "data": {
     "instanceUuid": "50c73059001b436fa85c0d8221c157cf"
   },
-  "time": 1145141918100
+  "time": 1718594177859
 }
 ```
 
@@ -312,7 +367,7 @@ GET /api/protected_instance/outputlog
 {
   "status": 200,
   "data": "[INFO]: Done (12.138s)! For help, type \"help\"\n",
-  "time": 1145141918100
+  "time": 1718594177859
 }
 ```
 
@@ -347,7 +402,7 @@ POST /api/protected_instance/install_instance
 {
   "status": 200,
   "data": true,
-  "time": 1145141918100
+  "time": 1718594177859
 }
 ```
 
