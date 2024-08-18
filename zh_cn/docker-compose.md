@@ -182,10 +182,10 @@ docker-compose up -d mcsm-daemon # 仅运行 daemon
 
 ```
 
-docker-compose exec mcsm-web bash -c "cd ../ && wget https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz && tar vxf mcsmanager_linux_release.tar.gz && rm -r mcsmanager_linux_release.tar.gz daemon" 
+docker-compose exec mcsm-web bash -c "cd ../ && wget https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz && tar vxf mcsmanager_linux_release.tar.gz && rm -rf mcsmanager_linux_release.tar.gz daemon" 
 # 更新 web
 
-docker-compose exec mcsm-daemon bash -c "cd ../ && wget https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz && tar vxf mcsmanager_linux_release.tar.gz && rm -r mcsmanager_linux_release.tar.gz web" 
+docker-compose exec mcsm-daemon bash -c "cd ../ && wget https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz && tar vxf mcsmanager_linux_release.tar.gz && rm -rf mcsmanager_linux_release.tar.gz web" 
 # 更新 daemon
 
 docker-compose restart
